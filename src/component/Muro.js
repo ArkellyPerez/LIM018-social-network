@@ -2,26 +2,25 @@
 import {
   showPostFunt,
   exitPost,
+  // likes,
 } from './post.js';
 
 // 1. HEADER DEL MURO, SE VA A MANTENER FIJO.............................
-export function muro() {
+export function muro(doc) {
   const viewMuro = `
     <div id="muroDiv" class="muroDiv">
         <nav class="headerContent">
             <div class="'logoContent">
-            <img class="logo" src="img/logo1.png" alt="logo"> </img>
-            <p class="logoName">Travelers</p>
+              <img class="logo" src="img/logo1.png" alt="logo"> </img>
+              <p class="logoName">Travelers</p>
             </div>
-            <div class="iconsContent">
-                <i id="icon" class="fa-solid fa-magnifying-glass"> </i>
-                <i id="icon" class="fa-solid fa-envelope"></i>
+           
+            <div class="iconsContent">            
                 <i id="iconExit"class="fa-solid fa-arrow-right-from-bracket"></i>
             </div>
         </nav>
 
         <form class="newPostDiv">
-            <i id="iconPhoto" class="fa-regular fa-image"></i>
             <input type="text" class="newPost" placeholder="Cuentanos tu aventura Traveller"></input>
             <button class="publicar"><i class="fa-solid fa-paper-plane"></i></button>     
         </form>
@@ -37,6 +36,7 @@ export function muro() {
               <button class="buttonCancelDeletePost">Cancelar</button>
            </div>      
         </div>
+
         <form id='modalEditPos' class="modalEditPost" style="display:none">
         </form>
     </form>`;
@@ -51,12 +51,13 @@ export function muro() {
 }
 
 export function mostrarPost(doc) {
-  const bdmuro = doc.data();
+  const post = doc.data();
+  // console.log('muro', post);
   const viewpost = `<div class="postsContainerDiv">
     <div class="headerPostContainer">
        <div class="userPostContainer">
-          <img class=" postUsePhoto">
-          <p class="postUserName">${bdmuro.userName}</p>
+          <img class=" postUsePhoto src="${post.photoUser} >
+          <p class="postUserName">${post.userName}</p>
        </div>
        <form class="iconsEditDeletePostContainer">
           
@@ -66,18 +67,15 @@ export function mostrarPost(doc) {
     </div>
     <div class="post">
           <div class="postTextDiv ">
-              <textarea class="posttext" readonly > ${bdmuro.postDescription}</textarea>
+              <textarea class="posttext"  > ${post.postDescription}</textarea>
           </div>
           <div class="postIcon ">
               <button class="btnLike" id=${doc.id}><i id='like' class="fa-regular fa-heart"></i></button>
-              <div class='numberLike'>0</div>
-              <i class="fa-regular fa-comment-dots"></i>
+              <p class='numberLike'> ${post.likes.length} </p>
           </div>
-          <div class="postCommentsDiv ">
-              <div class="postComments"> postComments</div>
-         </div>
     </div>
   </div>
   `;
+  // likes(post.uId, post);
   return viewpost;
 }
