@@ -10,11 +10,9 @@ import {
   auth,
   signOut,
   deletePosts,
-  // updatePost,
   getPost,
-  // arrayUnion,
-  // arrayRemove,
-//  likePost,
+  // likePost,
+  // unLikePost,
   // likePost,
 } from '../firebase/firebase.js';
 import { navigation } from '../main.js';
@@ -98,47 +96,42 @@ export function callPost(containerMuro) {
       });
     });
 
-    // const arrayBtnLike = containerPost.querySelectorAll('.btnLike');
-    // const idUser = auth.currentUser.reloadUserInfo.localId;
+    //     // -----------evento para dar LIKE------------------
+    //     const arrayBtnLike = containerPost.querySelectorAll('.btnLike');
+    //     const idUser = auth.currentUser.reloadUserInfo.localId;
 
-    // arrayBtnLike.forEach((btnL) => {
-    //   btnL.addEventListener('click', () => {
-    //     //  e.push(likes(idUser, btnL.id));
-    //     likes(idUser, btnL.id); // id del usuario y del boton funcionando
+    //     arrayBtnLike.forEach((btnL) => {
+    //       btnL.addEventListener('click', () => {
+    //         //  e.push(likes(idUser, btnL.id));
+    //         likes(idUser, btnL.id); // id del usuario y del boton funcionando
+    //       });
+    //     });
     //   });
-    // });
+    // }
+
+    // export function likes(idUser, btnLi) {
+    //   getPost(btnLi).then((post) => {
+    //     // let newLike;
+    //     const x = post.data(); // post y sus parametros
+    //     const idUser = x.uId; // id del usuario
+    //     // console.log('x', x);
+    //     if (x.likes.includes(idUser)) {
+    //       // newLike = idUser;
+    //       likePost(idUser, btnLi);
+    //       // newLike = { likes: arrayRemove(idUser) };
+    //       // btnLi.style.color = '#000000';
+    //     } else {
+    //       // newLike = { likes: arrayUnion(idUser) };
+    //       unLikePost(idUser, btnLi);
+    //       // btnLi.style.color = '#7c1097';
+    //     }
   });
 }
 
-// // -----------evento para dar LIKE------------------
-// function likes(idUser, btnLi) {
-//   getPost(btnLi).then((post) => {
-//     let newLike;
-//     const x = post.data(); // post y sus parametros
-//     console.log('x', x);
-
-//     const idUser = x.uId; // id del usuario
-//     console.log('id', idUser);
-
-//     if (x.likes.includes(idUser)) {
-//       console.log('hola');
-//       newLike = { likes: arrayRemove(idUser) };
-//       // btnId.style.color = '#000000';
-//       console.log(btnId);
-//     } else {
-//       console.log('chau');
-//       newLike = { likes: arrayUnion(idUser) };
-//     // btnId.style.color = '#7c1097';
-//     }
-//     likePost(idUser, newLike);
-//     console.log(idUser, newLike);
-//   });
-// }
 // salir de la sesion--------
 export const exitPost = () => {
   signOut(auth).then(() => {
     alert('Estás seguro que quieres salir');
-
     navigation('/');
   }).catch((error) => {
     const errorCode = error.code;
